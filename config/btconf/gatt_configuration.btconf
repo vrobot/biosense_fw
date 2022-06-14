@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Custom BLE GATT-->
+<gatt gatt_caching="true" generic_attribute_service="true" header="gatt_db.h" name="Custom BLE GATT" out="gatt_db.c" prefix="gattdb_">
+  
+  <!--Generic Access-->
+  <service advertise="false" name="Generic Access" requirement="mandatory" sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+    <informativeText>Abstract: The generic_access service contains generic information about the device. All available Characteristics are readonly. </informativeText>
+    
+    <!--Device Name-->
+    <characteristic const="false" id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+      <informativeText/>
+      <value length="30" type="utf-8" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Appearance-->
+    <characteristic const="true" name="Appearance" sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+      <informativeText>Abstract: The external appearance of this device. The values are composed of a category (10-bits) and sub-categories (6-bits). </informativeText>
+      <value length="2" type="hex" variable_length="false">0000</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Device Information-->
+  <service advertise="false" id="device_information" name="Device Information" requirement="mandatory" sourceId="org.bluetooth.service.device_information" type="primary" uuid="180A">
+    <informativeText>Abstract:  The Device Information Service exposes manufacturer and/or vendor information about a device.  Summary:  This service exposes manufacturer information about a device. The Device Information Service is instantiated as a Primary Service. Only one instance of the Device Information Service is exposed on a device.  </informativeText>
+    
+    <!--Manufacturer Name String-->
+    <characteristic const="true" id="manufacturer_name_string" name="Manufacturer Name String" sourceId="org.bluetooth.characteristic.manufacturer_name_string" uuid="2A29">
+      <informativeText>Abstract:  The value of this characteristic is a UTF-8 string representing the name of the manufacturer of the device.  </informativeText>
+      <value length="12" type="utf-8" variable_length="false">Silicon Labs</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--System ID-->
+    <characteristic const="false" id="system_id" name="System ID" sourceId="org.bluetooth.characteristic.system_id" uuid="2A23">
+      <informativeText>Abstract:  The SYSTEM ID characteristic consists of a structure with two fields. The first field are the LSOs and the second field contains the MSOs.       This is a 64-bit structure which consists of a 40-bit manufacturer-defined identifier concatenated with a 24 bit unique Organizationally Unique Identifier (OUI). The OUI is issued by the IEEE Registration Authority (http://standards.ieee.org/regauth/index.html) and is required to be used in accordance with IEEE Standard 802-2001.6 while the least significant 40 bits are manufacturer defined.       If System ID generated based on a Bluetooth Device Address, it is required to be done as follows. System ID and the Bluetooth Device Address have a very similar structure: a Bluetooth Device Address is 48 bits in length and consists of a 24 bit Company Assigned Identifier (manufacturer defined identifier) concatenated with a 24 bit Company Identifier (OUI). In order to encapsulate a Bluetooth Device Address as System ID, the Company Identifier is concatenated with 0xFFFE followed by the Company Assigned Identifier of the Bluetooth Address. For more guidelines related to EUI-64, refer to http://standards.ieee.org/develop/regauth/tut/eui64.pdf.  Examples:  If the system ID is based of a Bluetooth Device Address with a Company Identifier (OUI) is 0x123456 and the Company Assigned Identifier is 0x9ABCDE, then the System Identifier is required to be 0x123456FFFE9ABCDE.  </informativeText>
+      <value length="8" type="hex" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--ADXL DATA-->
+  <service advertise="false" id="adxl_data" name="ADXL DATA" requirement="mandatory" sourceId="custom.type" type="primary" uuid="1822">
+    <informativeText>Adxl Data</informativeText>
+    
+    <!--Fifo Data A-->
+    <characteristic const="false" id="fifo_transmit_a" name="Fifo Data A" sourceId="custom.type" uuid="4a5b7feb-0007-4850-adbd-2c1044c15ee4">
+      <informativeText>fifo_transmit_a </informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data B-->
+    <characteristic const="false" id="fifo_transmit_b" name="Fifo Data B" sourceId="custom.type" uuid="817a7e08-96d5-474f-971e-0d7840cb05b4">
+      <informativeText>fifo_transmit_b </informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data C-->
+    <characteristic const="false" id="fifo_transmit_c" name="Fifo Data C" sourceId="custom.type" uuid="8837eef9-c0a7-4e40-81f8-a66d2196a9eb">
+      <informativeText>fifo_transmit_c </informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data D-->
+    <characteristic const="false" id="fifo_transmit_d" name="Fifo Data D" sourceId="custom.type" uuid="569a3c66-87c2-475f-bd21-fe3dd1a4e5e7">
+      <informativeText>fifo_transmit_d </informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data E-->
+    <characteristic const="false" id="fifo_transmit_e" name="Fifo Data E" sourceId="custom.type" uuid="cbd25f83-ff81-4773-a3be-63a18db82b74">
+      <informativeText>fifo_transmit_e </informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data F-->
+    <characteristic const="false" id="fifo_transmit_f" name="Fifo Data F" sourceId="custom.type" uuid="1e433b1b-1f9f-4241-9881-1c3352ef1b9c">
+      <informativeText>fifo_transmit_f</informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data G-->
+    <characteristic const="false" id="fifo_transmit_g" name="Fifo Data G" sourceId="custom.type" uuid="81158289-a9c7-4a1a-8b90-b7ab6d190bf8">
+      <informativeText>fifo_transmit_g</informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data H-->
+    <characteristic const="false" id="fifo_transmit_h" name="Fifo Data H" sourceId="custom.type" uuid="a4c0c065-882b-4989-8e17-1b231a6f22ff">
+      <informativeText>fifo_transmit_h</informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Fifo Data I-->
+    <characteristic const="false" id="fifo_transmit_i" name="Fifo Data I" sourceId="custom.type" uuid="0de5e158-7239-450f-bc4d-fb3553171a54">
+      <informativeText>fifo_transmit_i</informativeText>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Error Codes-->
+  <service advertise="false" id="err_code" name="Error Codes" requirement="mandatory" sourceId="custom.type" type="primary" uuid="b38cb2d5-ec47-4e3d-b673-d9aed42a3006">
+    <informativeText>Error codes</informativeText>
+    
+    <!--Error Code-->
+    <characteristic const="false" id="err_code_service" name="Error Code" sourceId="custom.type" uuid="a0d55288-7cb1-48a3-b9c2-d999c65cc5a2">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+</gatt>
